@@ -159,7 +159,7 @@ Final Summary
 
 The input file is processed one line at a time using a generator rather than loading the entire dataset into memory.
 
-This allows the application to work with datasets that are larger than available memory.
+The input file is streamed line by line, avoiding the need to load the entire dataset into memory. Deduplication still requires storing previously seen IDs
 
 ### Deduplication
 
