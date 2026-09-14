@@ -21,15 +21,16 @@ def process_records(records, batch_size, statistics):
     seen_ids = set()
     batch = []
 
-    for line_number, record in records:
+    for line_number, record, error in records:
         statistics.increment_total_lines()
 
-        if record is None:
+        if error:
             statistics.increment_invalid_records()
 
             logger.error(
-                "Line %d contains invalid JSON or is empty",
-                line_number
+                "Line %d: %s",
+                line_number,
+                error
             )
 
             continue
