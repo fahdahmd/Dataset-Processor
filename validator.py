@@ -16,13 +16,16 @@ def validate_record(record):
     if record["id"] is None:
         return False, "id cannot be empty"
 
-    if record["text"] is None or not str(record["text"]).strip():
+    if not isinstance(record["text"], str):
+        return False, "text must be a string"
+
+    if not record["text"].strip():
         return False, "text cannot be empty"
 
-    if (
-        record["category"] is None
-        or not str(record["category"]).strip()
-    ):
+    if not isinstance(record["category"], str):
+        return False, "category must be a string"
+
+    if not record["category"].strip():
         return False, "category cannot be empty"
 
     try:
